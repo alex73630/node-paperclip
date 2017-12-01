@@ -15,7 +15,8 @@ module.exports    = function paperclip (schema, opts) {
 
     schema.methods.thumbnail = function(file, style) {
       paperclip.document = this;
-      return paperclip.class(class_name, file).thumbnail(style);
+      var c = paperclip.class(class_name, file);
+      return c.fileSystem.host() + c.thumbnail(style);
     };
 
     schema.methods.paperclip = function() {
